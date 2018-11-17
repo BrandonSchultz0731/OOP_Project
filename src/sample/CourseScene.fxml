@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="422.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.CourseDatabase">
+   <children>
+      <TableView fx:id="tableView" layoutX="14.0" layoutY="70.0" prefHeight="201.0" prefWidth="266.0">
+        <columns>
+          <TableColumn fx:id="courseColumn" prefWidth="119.0" text="Course" />
+          <TableColumn fx:id="letterGradeColumn" prefWidth="95.0" text="GPA" />
+        </columns>
+      </TableView>
+      <Button layoutX="302.0" layoutY="90.0" mnemonicParsing="false" onAction="#addCourseToTableClicked" text="Add to Databse" />
+      <Button layoutX="307.0" layoutY="228.0" mnemonicParsing="false" onAction="#deleteAllButtonClicked" text="Delete All" />
+      <Label layoutX="490.0" layoutY="90.0" text="Course">
+         <font>
+            <Font size="21.0" />
+         </font>
+      </Label>
+      <TextField fx:id="courseField" layoutX="587.0" layoutY="90.0" promptText="Enter a course taken..." />
+      <Label layoutX="490.0" layoutY="171.0" text="Grade">
+         <font>
+            <Font size="25.0" />
+         </font>
+      </Label>
+      <Button layoutX="400.0" layoutY="318.0" mnemonicParsing="false" onAction="#calculateGpaClicked" prefHeight="37.0" prefWidth="106.0" text="Calculate GPA" />
+      <Label fx:id="gpaLabel" layoutX="544.0" layoutY="323.0" prefHeight="27.0" prefWidth="114.0" text="GPA">
+         <font>
+            <Font size="29.0" />
+         </font>
+      </Label>
+      <Button layoutX="302.0" layoutY="135.0" mnemonicParsing="false" onAction="#updateGradeButtonClicked" text="Update Grade" />
+      <Button layoutX="301.0" layoutY="177.0" mnemonicParsing="false" onAction="#deleteSelectedRowClicked" text="Delete Selected" />
+      <ChoiceBox fx:id="gradeChoiceBox" layoutX="596.0" layoutY="177.0" prefWidth="150.0" />
+   </children>
+</AnchorPane>

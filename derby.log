@@ -1,0 +1,13 @@
+----------------------------------------------------------------
+Thu Nov 15 17:33:47 EST 2018:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.14.2.0 - (1828579): instance a816c00e-0167-1982-454f-000003fd7608 
+on database directory /Users/brandonschultz/Desktop/FGCU/Fall 2018/OOP/Java Projects/AnotherDerbyTest/DerbyDemo with class loader sun.misc.Launcher$AppClassLoader@18b4aac2 
+Loaded from file:/Users/brandonschultz/Desktop/FGCU/Fall%202018/OOP/Java%20Projects/AnotherDerbyTest/lib/derby.jar
+java.vendor=Oracle Corporation
+java.runtime.version=1.8.0_181-b13
+user.dir=/Users/brandonschultz/Desktop/FGCU/Fall 2018/OOP/Java Projects/AnotherDerbyTest
+os.name=Mac OS X
+os.arch=x86_64
+os.version=10.14
+derby.system.home=null
+Database Class Loader started - derby.database.classpath=''
