@@ -7,6 +7,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -31,6 +33,7 @@ public class LogInController {
   private void signInButtonClicked() throws Exception{
     user = enterUserField.getText();
     String pass = enterPassField.getText();
+    int validCount = 1;
 
     try {
       Statement statement = DatabaseConnection.conn.createStatement();
@@ -41,6 +44,7 @@ public class LogInController {
         String rightUser = res.getString("Name");
         String rightPass = res.getString("Password");
         if(rightUser.equals(user) && rightPass.equals(pass)){
+          validCount = 0;
           System.out.println("Signed in Success!!!");
           Stage stage = Main.getPrimaryStage();
 
@@ -53,6 +57,12 @@ public class LogInController {
         else{
           System.out.println("Not found...." + res.getString("Name") + " " + res.getString("Password"));
         }
+      }
+      if(validCount == 1){
+        Alert alert = new Alert(AlertType.ERROR,"Username and/or Password is Incorrect...Please Try Again");
+        alert.setTitle("Invalid Login");
+        alert.setHeaderText("Error");
+        alert.showAndWait();
       }
     } catch (SQLException e) {
       e.printStackTrace();
