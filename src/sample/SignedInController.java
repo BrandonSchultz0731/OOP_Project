@@ -31,6 +31,7 @@ public class SignedInController {
   private Label welcomeLabel;
 
   public void initialize(){
+    //This method is called immediately on creation
     welcomeLabel.setText("Welcome, " + LogInController.user + ", to the signed in page!");
   }
 

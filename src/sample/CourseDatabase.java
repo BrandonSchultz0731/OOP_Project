@@ -76,6 +76,7 @@ public class CourseDatabase implements Initializable {
 
   public void insertIntoTable(String courseName, char letterGrade) {
     try {
+      //Inserting into database table "COURSETABLE"
       conn.createStatement()
           .execute(
               "INSERT INTO COURSESTABLE (COURSENAME,LETTERGRADE) VALUES ('" + courseName + "','"
@@ -91,7 +92,7 @@ public class CourseDatabase implements Initializable {
 
     String courseName = courseField.getText();
     char letterGrade = gradeChoiceBox.getSelectionModel().getSelectedItem();
-    insertIntoTable(courseName, letterGrade);
+    insertIntoTable(courseName, letterGrade); //Puts data into database
 //    courseColumn.setCellValueFactory(new PropertyValueFactory<Courses,String>("courseName"));
 //    letterGradeColumn.setCellValueFactory(new PropertyValueFactory<Courses,Character>("letterGrade"));
 
@@ -121,12 +122,13 @@ public class CourseDatabase implements Initializable {
   @FXML
   private void deleteAllButtonClicked() {
     try {
+      //Removes all data from database
       conn.createStatement()
           .execute("DELETE FROM COURSESTABLE");
     } catch (SQLException e) {
       e.printStackTrace();
     }
-    courses.clear();
+    courses.clear(); //clear list that displays on table
 
     //tableView.setItems(getCourses());
   }
@@ -171,6 +173,7 @@ public class CourseDatabase implements Initializable {
     String courseName = courseField.getText();
     char letterGrade = gradeChoiceBox.getSelectionModel().getSelectedItem();
     try {
+      //Only update a course with the wrong letter grade
       conn.createStatement().execute(
           "UPDATE COURSESTABLE SET LETTERGRADE = '" + letterGrade + "' WHERE COURSENAME = '"
               + courseName + "'");

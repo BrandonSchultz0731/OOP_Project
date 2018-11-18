@@ -35,7 +35,7 @@ public class Controller {
     String password = passwordField.getText();
     String dob = dobPicker.getValue().toString();
     //System.out.println("Username is: " + username + "\n" + "Password is: " + password);
-    db = new DatabaseConnection();
+    db = new DatabaseConnection(); //Create object to make database connection
     //db.createTable(); only create table once?
     db.insertIntoTable(username, password,dob);
     Alert alert = new Alert(AlertType.INFORMATION,"Account Created Successfully");
@@ -47,7 +47,7 @@ public class Controller {
 
   @FXML
   private void haveAccountButton() throws Exception {
-    Stage stage = Main.getPrimaryStage();
+    Stage stage = Main.getPrimaryStage(); //Accessing Stage from global variable in Main
 
     Parent root = FXMLLoader.load(getClass().getResource("logIn.fxml"));
 
