@@ -13,8 +13,8 @@
    <children>
       <TableView fx:id="tableView" layoutX="14.0" layoutY="70.0" prefHeight="201.0" prefWidth="266.0">
         <columns>
-          <TableColumn fx:id="courseColumn" prefWidth="119.0" text="Course" />
-          <TableColumn fx:id="letterGradeColumn" prefWidth="95.0" text="GPA" />
+          <TableColumn fx:id="courseColumn" prefWidth="136.0" text="Course" />
+          <TableColumn fx:id="letterGradeColumn" prefWidth="129.0" text="GPA" />
         </columns>
       </TableView>
       <Button layoutX="302.0" layoutY="90.0" mnemonicParsing="false" onAction="#addCourseToTableClicked" text="Add to Databse" />
@@ -30,8 +30,8 @@
             <Font size="25.0" />
          </font>
       </Label>
-      <Button layoutX="400.0" layoutY="318.0" mnemonicParsing="false" onAction="#calculateGpaClicked" prefHeight="37.0" prefWidth="106.0" text="Calculate GPA" />
-      <Label fx:id="gpaLabel" layoutX="544.0" layoutY="323.0" prefHeight="27.0" prefWidth="114.0" text="GPA">
+      <Button layoutX="481.0" layoutY="253.0" mnemonicParsing="false" onAction="#calculateGpaClicked" prefHeight="37.0" prefWidth="106.0" text="Calculate GPA" />
+      <Label fx:id="gpaLabel" layoutX="614.0" layoutY="254.0" prefHeight="27.0" prefWidth="114.0" text="GPA">
          <font>
             <Font size="29.0" />
          </font>
@@ -39,5 +39,7 @@
       <Button layoutX="302.0" layoutY="135.0" mnemonicParsing="false" onAction="#updateGradeButtonClicked" text="Update Grade" />
       <Button layoutX="301.0" layoutY="177.0" mnemonicParsing="false" onAction="#deleteSelectedRowClicked" text="Delete Selected" />
       <ChoiceBox fx:id="gradeChoiceBox" layoutX="596.0" layoutY="177.0" prefWidth="150.0" />
+      <Button layoutX="23.0" layoutY="364.0" mnemonicParsing="false" onAction="#mainScreen" text="Back" />
+      <Label fx:id="mssgLabel" layoutX="481.0" layoutY="310.0" prefHeight="68.0" prefWidth="266.0" />
    </children>
 </AnchorPane>

@@ -2,6 +2,7 @@ package sample;
 
 
 import java.io.File;
+import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.nio.file.Paths;
@@ -14,13 +15,19 @@ import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
 
 public class CourseDatabase implements Initializable {
 
@@ -42,6 +49,8 @@ public class CourseDatabase implements Initializable {
   private TextField courseField;
   @FXML
   private Label gpaLabel;
+  @FXML
+  private Label mssgLabel;
   @FXML
   private ChoiceBox<Character> gradeChoiceBox;
 
@@ -91,14 +100,61 @@ public class CourseDatabase implements Initializable {
   private void addCourseToTableClicked() {
 
     String courseName = courseField.getText();
-    char letterGrade = gradeChoiceBox.getSelectionModel().getSelectedItem();
-    insertIntoTable(courseName, letterGrade); //Puts data into database
+    char letterGrade;
+    try{
+      letterGrade = gradeChoiceBox.getSelectionModel().getSelectedItem();
+    }catch (NullPointerException n){
+      System.out.println("Empty letter grade");
+      letterGrade = 'z';
+    }
+
+    if(courseName.isEmpty()){
+      Alert courseNameAlert = new Alert(AlertType.ERROR);
+      courseNameAlert.setTitle("No Course Name");
+      courseNameAlert.setContentText("Did not enter a course name...");
+      courseNameAlert.showAndWait();
+    }
+    else if(letterGrade == 'z'){
+      Alert letterGradeAlert = new Alert(AlertType.ERROR);
+      letterGradeAlert.setTitle("No Letter Grade");
+      letterGradeAlert.setContentText("Did not provide course letter grade...");
+      letterGradeAlert.showAndWait();
+    }
+    else{
+      int count = 0;
+      try{
+        res = statement.executeQuery("SELECT COURSENAME FROM COURSESTABLE");
+        String name;
+
+        while(res.next()){
+          name = res.getString("COURSENAME");
+          if(name.equals(courseName)){
+            count++;
+          }
+        }
+
+      }catch (SQLException e){
+        e.printStackTrace();
+      }
+
+      if(count == 1){
+        Alert alert = new Alert(AlertType.ERROR,"Course Entered Already Exists...");
+        alert.setTitle("Invalid Course");
+        alert.setHeaderText("Error");
+        alert.showAndWait();
+      }
+      else {
+        //Course entered is not already inside list
+
+        insertIntoTable(courseName, letterGrade); //Puts data into database
 //    courseColumn.setCellValueFactory(new PropertyValueFactory<Courses,String>("courseName"));
 //    letterGradeColumn.setCellValueFactory(new PropertyValueFactory<Courses,Character>("letterGrade"));
 
-    //tableView.setItems(getCourses());
+        //tableView.setItems(getCourses());
 
-    UpdateTable();
+        UpdateTable();
+      }
+    }
 
   }
 
@@ -166,11 +222,26 @@ public class CourseDatabase implements Initializable {
     result = count / numOfClasses;
 
     gpaLabel.setText(Double.toString(result));
+    if(result == 4){
+      mssgLabel.setText("You have straight A's!\nKeep it up!!");
+    }
+    else if(result < 4 && result >= 3){
+      mssgLabel.setText("You are a B student. Pretty good!");
+    }
+    else if(result < 3 && result >= 2){
+      mssgLabel.setText("You are a C student. Could be better");
+    }
+    else if(result < 2 && result >= 1){
+      mssgLabel.setText("You have a D average. Hit the books!");
+    }
+    else{
+      mssgLabel.setText("Maybe you should go to class...");
+    }
   }
 
   @FXML
   private void updateGradeButtonClicked() {
-    String courseName = courseField.getText();
+    String courseName = tableView.getSelectionModel().getSelectedItem().getCourseName();
     char letterGrade = gradeChoiceBox.getSelectionModel().getSelectedItem();
     try {
       //Only update a course with the wrong letter grade
@@ -216,6 +287,15 @@ public class CourseDatabase implements Initializable {
     }
     selectedCourses.forEach(allCourses::remove);
 
+  }
+  @FXML
+  private void mainScreen() throws IOException {
+    Stage stage = Main.getPrimaryStage();
+
+    Parent root = FXMLLoader.load(getClass().getResource("signedIn.fxml"));
+
+    stage.setScene(new Scene(root,600,450));
+    stage.show();
   }
 
 

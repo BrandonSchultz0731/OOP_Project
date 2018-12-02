@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<GridPane id=" " maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+<GridPane id=" " maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@Theme.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
   <columnConstraints>
     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -23,13 +23,13 @@
     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
-      <Label prefHeight="76.0" prefWidth="159.0" text="Username:">
+      <Label prefHeight="76.0" prefWidth="159.0" text="Username:" textFill="WHITE">
          <font>
             <Font size="29.0" />
          </font>
       </Label>
       <TextField fx:id="userNameField" GridPane.columnIndex="1" />
-      <Label prefHeight="65.0" prefWidth="145.0" text="Password:" GridPane.rowIndex="1">
+      <Label prefHeight="65.0" prefWidth="145.0" text="Password:" textFill="WHITE" GridPane.rowIndex="1">
          <font>
             <Font size="28.0" />
          </font>
@@ -41,7 +41,7 @@
          </GridPane.margin>
       </Button>
       <Button id="buttonYellow" mnemonicParsing="false" onAction="#haveAccountButton" stylesheets="@Button.css" text="Already Have An Account" GridPane.rowIndex="3" />
-      <Label text="Date Of Birth:" GridPane.rowIndex="2">
+      <Label text="Date Of Birth:" textFill="WHITE" GridPane.rowIndex="2">
          <font>
             <Font size="29.0" />
          </font>
