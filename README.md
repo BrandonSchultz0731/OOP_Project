@@ -18,10 +18,23 @@ you will be brought to the main, logged in screen. The main part of this program
 
 <a href="https://imgflip.com/gif/2nz3gx"><img src="https://i.imgflip.com/2nz3gx.gif" title="made at imgflip.com"/></a>
 
+2) To update a grade in the table, you first must select the course that you would like to update from the table. Once the coruse and grade are highlighted, go over to the letter grade choicebox and select which letter grade you would like to update to. Once selected, you may now click the "Update Grade" button to change the selected course grade.
 
-To do so, first enter a course name in the proper text box, followed your letter grade for the class in the other box. To add it to the table,
-simply click the "Add to Database" button amd your course will display in the table. To remove a course, highlight the course to be removed
-and click the remove button. To delete all the courses entered from the database, simply click the delete all button.
+<a href="https://imgflip.com/gif/2nz3v1"><img src="https://i.imgflip.com/2nz3v1.gif" title="made at imgflip.com"/></a>
+
+3) To delete one course in the table, please select a course from the course table. Once a course is highlighted, you may click the "Delete Selected" button to remove the course from the table and the database.
+
+<a href="https://imgflip.com/gif/2nz428"><img src="https://i.imgflip.com/2nz428.gif" title="made at imgflip.com"/></a>
+
+4) To delete all courses from the course table, simply just click the "Delete All" button which will remove all courses and grades from the table and the database.
+
+<a href="https://imgflip.com/gif/2nz44u"><img src="https://i.imgflip.com/2nz44u.gif" title="made at imgflip.com"/></a>
+
+5) To calculate your total GPA once all courses and grades are in the table, you can click the "Calculate GPA" button. This will convert each letter grade to the associated number, add them up, and divide by the total number of courses in the table. It will display the correct average GPA, and a simple text will display more about the grade you recieved.
+
+<a href="https://imgflip.com/gif/2nz4b1"><img src="https://i.imgflip.com/2nz4b1.gif" title="made at imgflip.com"/></a>
+
+
 
 
 # Built With
