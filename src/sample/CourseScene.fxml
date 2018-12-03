@@ -6,6 +6,7 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
@@ -41,5 +42,6 @@
       <ChoiceBox fx:id="gradeChoiceBox" layoutX="596.0" layoutY="177.0" prefWidth="150.0" />
       <Button layoutX="23.0" layoutY="364.0" mnemonicParsing="false" onAction="#mainScreen" text="Back" />
       <Label fx:id="mssgLabel" layoutX="481.0" layoutY="310.0" prefHeight="68.0" prefWidth="266.0" />
+      <ImageView fx:id="gradeIMG" fitHeight="150.0" fitWidth="200.0" layoutX="280.0" layoutY="258.0" pickOnBounds="true" preserveRatio="true" />
    </children>
 </AnchorPane>

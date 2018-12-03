@@ -59,7 +59,8 @@ public class LogInController {
         }
       }
       if(validCount == 1){
-        Alert alert = new Alert(AlertType.ERROR,"Username and/or Password is Incorrect...Please Try Again");
+        Alert alert = new Alert(AlertType.ERROR,
+            "Username and/or Password is Incorrect...Please Try Again");
         alert.setTitle("Invalid Login");
         alert.setHeaderText("Error");
         alert.showAndWait();

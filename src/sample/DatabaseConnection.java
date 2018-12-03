@@ -13,16 +13,17 @@ public class DatabaseConnection {
 
   static Connection conn;
 
-  public DatabaseConnection(){
+  public DatabaseConnection() {
     try {
       conn = DriverManager.getConnection(JDBC_URL);
-      if(conn != null){
+      if (conn != null) {
         System.out.println("Connected!");
       }
-    }catch (SQLException e){
+    } catch (SQLException e) {
       e.printStackTrace();
     }
   }
+
   public void createTable() {
 
     try {
@@ -34,10 +35,10 @@ public class DatabaseConnection {
 
   }
 
-  public void insertIntoTable(String name, String password,String dob) {
+  public void insertIntoTable(String name, String password, String dob) {
     try {
       conn.createStatement()
-          .execute("INSERT INTO Users VALUES ('" + name + "','"+password + "','" + dob + "')");
+          .execute("INSERT INTO Users VALUES ('" + name + "','" + password + "','" + dob + "')");
       conn.createStatement().execute("SELECT * FROM USERS ORDER BY DOB");
     } catch (SQLException e) {
       e.printStackTrace();

@@ -30,7 +30,7 @@ public class SignedInController {
   @FXML
   private Label welcomeLabel;
 
-  public void initialize(){
+  public void initialize() {
     //This method is called immediately on creation
     welcomeLabel.setText("Welcome, " + LogInController.user + ", to the signed in page!");
   }
@@ -41,11 +41,12 @@ public class SignedInController {
 
     Parent root = FXMLLoader.load(getClass().getResource("CourseScene.fxml"));
 
-    stage.setScene(new Scene(root,800,422));
+    stage.setScene(new Scene(root, 800, 422));
     stage.show();
   }
+
   @FXML
-  public void circlesButtonClicked(){
+  public void circlesButtonClicked() {
     Stage stage = Main.getPrimaryStage();
     Group root = new Group();
     Scene scene = new Scene(root, 800, 600, Color.BLACK);
@@ -82,7 +83,7 @@ public class SignedInController {
     circles.setEffect(new BoxBlur(10, 10, 3));
 
     Timeline timeline = new Timeline();
-    for (Node circle: circles.getChildren()) {
+    for (Node circle : circles.getChildren()) {
       timeline.getKeyFrames().addAll(
           new KeyFrame(Duration.ZERO, // set start position at 0
               new KeyValue(circle.translateXProperty(), random() * 800),
@@ -99,6 +100,6 @@ public class SignedInController {
 
     stage.show();
   }
-  }
+}
 
 

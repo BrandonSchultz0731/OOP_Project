@@ -37,8 +37,8 @@ public class Controller {
     //System.out.println("Username is: " + username + "\n" + "Password is: " + password);
     db = new DatabaseConnection(); //Create object to make database connection
     //db.createTable(); only create table once?
-    db.insertIntoTable(username, password,dob);
-    Alert alert = new Alert(AlertType.INFORMATION,"Account Created Successfully");
+    db.insertIntoTable(username, password, dob);
+    Alert alert = new Alert(AlertType.INFORMATION, "Account Created Successfully");
     alert.setTitle("Success");
     alert.setHeaderText("Alert");
     db.printAll();
