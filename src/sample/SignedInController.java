@@ -3,6 +3,9 @@ package sample;
 import static java.lang.Math.random;
 
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.Period;
+import java.util.Date;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
@@ -28,11 +31,34 @@ import javafx.util.Duration;
 public class SignedInController {
 
   @FXML
-  private Label welcomeLabel;
+  private Label welcomeLabel, ageLabel;
+  public String currentUser;
 
   public void initialize() {
     //This method is called immediately on creation
-    welcomeLabel.setText("Welcome, " + LogInController.user + ", to the signed in page!");
+    if (LogInController.user == null) {
+      welcomeLabel.setText("Welcome, " + Controller.user + ", to the signed in page!");
+      currentUser = Controller.user;
+    } else {
+      welcomeLabel.setText("Welcome, " + LogInController.user + ", to the signed in page!");
+      currentUser = LogInController.user;
+    }
+    GetUserAge();
+  }
+
+  private void GetUserAge() {
+    LocalDate current = LocalDate.now();
+    String age;
+    if (LogInController.birthday == null) {
+      //System.out.println(Period.between(Controller.newAccountBday,current).getYears());
+      age = Integer.toString(Period.between(Controller.newAccountBday, current).getYears());
+      ageLabel.setText(age);
+    } else {
+      //System.out.println(Period.between(LogInController.birthday.toLocalDate(),current).getYears());
+      age = Integer
+          .toString(Period.between(LogInController.birthday.toLocalDate(), current).getYears());
+      ageLabel.setText(age);
+    }
   }
 
   @FXML

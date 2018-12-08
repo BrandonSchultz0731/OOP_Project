@@ -1,5 +1,6 @@
 package sample;
 
+import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -23,14 +24,16 @@ public class LogInController {
   @FXML
   private PasswordField enterPassField;
 
-  public LogInController(){
+  public static Date birthday;
+
+  public LogInController() {
     DatabaseConnection db = new DatabaseConnection();
 
 
   }
 
   @FXML
-  private void signInButtonClicked() throws Exception{
+  private void signInButtonClicked() throws Exception {
     user = enterUserField.getText();
     String pass = enterPassField.getText();
     int validCount = 1;
@@ -43,22 +46,24 @@ public class LogInController {
 //            res.getString("Name") + " " + res.getString("Password"));
         String rightUser = res.getString("Name");
         String rightPass = res.getString("Password");
-        if(rightUser.equals(user) && rightPass.equals(pass)){
-          validCount = 0;
+        if (rightUser.equals(user) && rightPass.equals(pass)) {
+          //validCount = 0;
+          birthday = res.getDate("DOB");
+
           System.out.println("Signed in Success!!!");
           Stage stage = Main.getPrimaryStage();
 
           Parent root = FXMLLoader.load(getClass().getResource("signedIn.fxml"));
 
-          stage.setScene(new Scene(root,600,450));
+          stage.setScene(new Scene(root, 600, 450));
           stage.show();
           return;
-        }
-        else{
-          System.out.println("Not found...." + res.getString("Name") + " " + res.getString("Password"));
+        } else {
+          System.out
+              .println("Not found...." + res.getString("Name") + " " + res.getString("Password"));
         }
       }
-      if(validCount == 1){
+      if (validCount == 1) {
         Alert alert = new Alert(AlertType.ERROR,
             "Username and/or Password is Incorrect...Please Try Again");
         alert.setTitle("Invalid Login");

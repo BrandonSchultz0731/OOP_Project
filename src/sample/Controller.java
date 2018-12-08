@@ -1,6 +1,9 @@
 package sample;
 
 
+import java.io.IOException;
+import java.time.LocalDate;
+import java.util.Date;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -29,11 +32,16 @@ public class Controller {
   @FXML
   private DatePicker dobPicker;
 
+  public static String user;
+  public static LocalDate newAccountBday;
+
   @FXML
-  private void dbButtonClicked() {
+  private void dbButtonClicked() throws IOException {
     String username = userNameField.getText();
     String password = passwordField.getText();
+    user = username;
     String dob = dobPicker.getValue().toString();
+    newAccountBday = dobPicker.getValue();
     //System.out.println("Username is: " + username + "\n" + "Password is: " + password);
     db = new DatabaseConnection(); //Create object to make database connection
     //db.createTable(); only create table once?
@@ -43,6 +51,12 @@ public class Controller {
     alert.setHeaderText("Alert");
     db.printAll();
     alert.showAndWait();
+    Stage stage = Main.getPrimaryStage(); //Accessing Stage from global variable in Main
+
+    Parent root = FXMLLoader.load(getClass().getResource("signedIn.fxml"));
+
+    stage.setScene(new Scene(root, 600, 450));
+    stage.show();
   }
 
   @FXML

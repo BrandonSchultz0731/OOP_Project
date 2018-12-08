@@ -3,6 +3,7 @@ package sample;
 
 import java.io.File;
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.nio.file.Paths;
@@ -98,6 +99,23 @@ public class CourseDatabase implements Initializable {
     } catch (SQLException e) {
       e.printStackTrace();
     }
+//    finally {
+//      if (statement != null) {
+//        try {
+//          statement.close();
+//        } catch (SQLException e) { /* ignored */}
+//      }
+//      if (res != null) {
+//        try {
+//          res.close();
+//        } catch (SQLException e) { /* ignored */}
+//      }
+//      if (conn != null) {
+//        try {
+//          conn.close();
+//        } catch (SQLException e) { /* ignored */}
+//      }
+//    }
 
   }
 
@@ -194,7 +212,8 @@ public class CourseDatabase implements Initializable {
   @FXML
   private void calculateGpaClicked() {
     char grade;
-    double count = 0, numOfClasses = 0;
+    int qualityPoints = 0;
+    int numOfClasses = 0;
     double result;
     try {
       res = statement.executeQuery("SELECT LETTERGRADE FROM COURSESTABLE");
@@ -203,37 +222,39 @@ public class CourseDatabase implements Initializable {
         grade = res.getString(1).charAt(0);
         switch (grade) {
           case 'A':
-            count += 4;
+            qualityPoints += 4;
             break;
           case 'B':
-            count += 3;
+            qualityPoints += 3;
             break;
           case 'C':
-            count += 2;
+            qualityPoints += 2;
             break;
           case 'D':
-            count += 1;
+            qualityPoints += 1;
             break;
           default:
-            count += 0;
+            qualityPoints += 0;
         }
       }
     } catch (SQLException e) {
       e.printStackTrace();
     }
-    result = count / numOfClasses;
+    result = (double) qualityPoints / numOfClasses;
 
     gpaLabel.setText(Double.toString(result));
-    if (result == 4) {
+    //SpotBugs was giving me error about not using BigDecimal, so i used an absolute value instead
+    //and got rid of error
+    if (Math.abs(result - 4) < .0000001) {
       mssgLabel.setText("You have straight A's!\nKeep it up!!");
       gradeIMG.setImage(new Image("sample/Images/A_Student.jpg"));
-    } else if (result < 4 && result >= 3) {
+    } else if (result < 4.0 && result >= 3.0) {
       mssgLabel.setText("You are a B student. Pretty good!");
       gradeIMG.setImage(new Image("sample/Images/B_Student.jpg"));
-    } else if (result < 3 && result >= 2) {
+    } else if (result < 3.0 && result >= 2.0) {
       mssgLabel.setText("You are a C student. Could be better");
       gradeIMG.setImage(new Image("sample/Images/C_Student.jpg"));
-    } else if (result < 2 && result >= 1) {
+    } else if (result < 2.0 && result >= 1.0) {
       mssgLabel.setText("You have a D average. Hit the books!");
       gradeIMG.setImage(new Image("sample/Images/D_Student.jpg"));
     } else {
@@ -245,17 +266,19 @@ public class CourseDatabase implements Initializable {
   @FXML
   private void updateGradeButtonClicked() {
     String courseName;
-    try{
+    try {
       courseName = tableView.getSelectionModel().getSelectedItem().getCourseName();
-    }catch (Exception e){
+    } catch (Exception e) {
       courseName = null;
     }
 
     char letterGrade = gradeChoiceBox.getSelectionModel().getSelectedItem();
-    if(courseName != null){
+    if (courseName != null) {
       //user didnt select from table
       try {
         //Only update a course with the wrong letter grade
+        //Error says nonconstant variable inside SQL statement, however this is what i want it to do
+        //for my programs purpose
         conn.createStatement().execute(
             "UPDATE COURSESTABLE SET LETTERGRADE = '" + letterGrade + "' WHERE COURSENAME = '"
                 + courseName + "'");
@@ -268,7 +291,8 @@ public class CourseDatabase implements Initializable {
         res = statement.executeQuery("SELECT * FROM COURSESTABLE");
         while (res.next()) {
           courses
-              .add(new Courses(res.getString("COURSENAME"), res.getString("LETTERGRADE").charAt(0)));
+              .add(
+                  new Courses(res.getString("COURSENAME"), res.getString("LETTERGRADE").charAt(0)));
         }
       } catch (SQLException e) {
         e.printStackTrace();
@@ -278,8 +302,7 @@ public class CourseDatabase implements Initializable {
           .setCellValueFactory(new PropertyValueFactory<Courses, Character>("letterGrade"));
 
       tableView.setItems(courses);
-    }
-    else{
+    } else {
       Alert alert = new Alert(AlertType.ERROR);
       alert.setTitle("No selection");
       alert.setContentText("Please highlight a course in the table and try again");
@@ -333,6 +356,7 @@ public class CourseDatabase implements Initializable {
       e.printStackTrace();
     }
     gradeChoiceBox.setItems(gradeChoice);
+    gradeChoiceBox.setValue('A');
     courseColumn.setCellValueFactory(new PropertyValueFactory<Courses, String>("courseName"));
     letterGradeColumn
         .setCellValueFactory(new PropertyValueFactory<Courses, Character>("letterGrade"));
