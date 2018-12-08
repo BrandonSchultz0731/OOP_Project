@@ -9,9 +9,16 @@ Other scenes within the project allow users to see some examples of what we have
 
 # Getting Started
 
-The first step to running the program, if you haven't done so already, is to create an account. Once an account has been created,
+The first step to running the program, if you haven't done so already, is to create an account. Please make sure all fields in the create account window are filled out. If not, an alert box will prompt you to do so.
+
+<a href="https://imgflip.com/gif/2ohmm2"><img src="https://i.imgflip.com/2ohmm2.gif" title="made at imgflip.com"/></a>
+
+Once an account has been created,
 you can now click on the "Already Have an Account" button, which allows you to login with the account you just created. From their,
 you will be brought to the main, logged in screen. The main part of this program is to be able to add courses to a table and calculate your GPA.
+
+# GUI Design Principles
+For a GUI system to adhere to design princples, one of the most important feature a GUI must have is ease of useability of the program itself. To make sure the user doesn't get lost in my program, I have set up alert boxes for any error that could possibly occur if invalid information is given. This way, if a user enters something wrong, or doesn't enter anything at all, a box will pop up to the screen telling them what they missed and how to correct it. I have also layed out the buttons and text fields in a way that looks user friendly and easy to use.
 
 # Working With Course Scene
 1) To add a course to the table, type in your course name in the designated text field. After name is entered, choose the grade you have in that class from the choicebox shown. Once both fields are entered, click the button that says "Add to Database" to show the course in the table.
