@@ -38,7 +38,28 @@ public class Controller {
   @FXML
   private void dbButtonClicked() throws IOException {
     String username = userNameField.getText();
+    if(username.equals("")){
+      Alert nameAlert = new Alert(AlertType.ERROR, "No Username Entered. Please Enter Name");
+      nameAlert.setTitle("No User");
+      nameAlert.setHeaderText("Alert");
+      nameAlert.showAndWait();
+      return;
+    }
     String password = passwordField.getText();
+    if(password.equals("")){
+      Alert psswdAlert = new Alert(AlertType.ERROR, "No Password Entered. Please Enter Password");
+      psswdAlert.setTitle("No Password");
+      psswdAlert.setHeaderText("Alert");
+      psswdAlert.showAndWait();
+      return;
+    }
+    if(dobPicker.getValue() == null){
+      Alert bdayAlert = new Alert(AlertType.ERROR, "No Birthday Entered. Please Enter Birthday");
+      bdayAlert.setTitle("No Birthday");
+      bdayAlert.setHeaderText("Alert");
+      bdayAlert.showAndWait();
+      return;
+    }
     user = username;
     String dob = dobPicker.getValue().toString();
     newAccountBday = dobPicker.getValue();
