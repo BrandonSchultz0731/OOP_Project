@@ -9,7 +9,11 @@ Other scenes within the project allow users to see some examples of what we have
 
 # Getting Started
 
-The first step to running the program, if you haven't done so already, is to create an account. Once an account has been created,
+The first step to running the program, if you haven't done so already, is to create an account. Please make sure all fields in the create account window are filled out. If not, an alert box will prompt you to do so.
+
+<a href="https://imgflip.com/gif/2ohmm2"><img src="https://i.imgflip.com/2ohmm2.gif" title="made at imgflip.com"/></a>
+
+Once an account has been created,
 you can now click on the "Already Have an Account" button, which allows you to login with the account you just created. From their,
 you will be brought to the main, logged in screen. The main part of this program is to be able to add courses to a table and calculate your GPA.
 
