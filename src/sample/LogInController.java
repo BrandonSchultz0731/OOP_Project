@@ -27,7 +27,7 @@ public class LogInController {
   public static Date birthday;
 
   public LogInController() {
-    DatabaseConnection db = new DatabaseConnection();
+    new DatabaseConnection();
 
 
   }
